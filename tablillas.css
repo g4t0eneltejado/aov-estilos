@@ -76,7 +76,7 @@
   color: var(--aov-color-grupo);
 }
 
-/* Cierre (opcional) */
+/* Aviso de contenido (opcional) */
 .aov-post-final { text-align: center; }
 .aov-post-aviso {
   font-family: var(--aov-fuente-titulos);
@@ -85,4 +85,35 @@
   text-transform: uppercase;
   color: var(--aov-suave);
 }
-.aov-post-aviso span { color:
+.aov-post-aviso span { color: var(--aov-color-grupo); }
+.aov-post-aviso:empty { display: none; }
+
+/* Personajes del tema: "con…" */
+.aov-post .aov-post-con {
+  margin: 0;
+  text-align: center;
+  font-family: var(--aov-fuente-titulos);
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--aov-titulo);
+}
+.aov-post .aov-post-con span {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--aov-fuente-texto);
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--aov-suave);
+}
+.aov-post .aov-post-con a { font-style: normal; }
+
+/* Móvil */
+@media (max-width: 700px) {
+  .aov-post { padding: 32px 22px; }
+  .aov-post-titulo { font-size: 32px; }
+  .aov-post-texto { font-size: 17px; text-align: left; }
+}
