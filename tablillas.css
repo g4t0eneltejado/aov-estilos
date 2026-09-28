@@ -371,3 +371,145 @@
   .aov-doc-art-texto,
   .aov-doc-texto { font-size: 16px; text-align: left; }
 }
+
+
+/* ==========================================================
+   TÍTULO DE CADA TABLILLA (tema de tablillas oficiales)
+   ========================================================== */
+.aov-tab-cab {
+  margin: 56px 0 22px;
+  text-align: center;
+}
+.aov-tab-cab:first-child { margin-top: 10px; }
+.aov-tab-cab > br { display: none; }
+.aov-tab-etq {
+  font-family: var(--aov-fuente-titulos);
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--aov-oro);
+}
+.aov-tab-nombre {
+  margin-top: 8px;
+  font-family: var(--aov-fuente-titulos);
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--aov-titulo);
+}
+.aov-tab-desc {
+  max-width: 560px;
+  margin: 12px auto 0;
+  font-family: var(--aov-fuente-texto);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.6;
+  color: #b4b4b4;
+}
+/* Línea – rombo – línea (igual que en la tablilla de staff) */
+.aov-tab-cab .aov-doc-orn {
+  position: relative;
+  width: 220px;
+  max-width: 70%;
+  height: 14px;
+  margin: 16px auto 0;
+  background: linear-gradient(var(--aov-oro-tenue), var(--aov-oro-tenue)) center / 100% 1px no-repeat;
+}
+.aov-tab-cab .aov-doc-orn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: var(--aov-panel);
+  border: 1px solid var(--aov-oro);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ==========================================================
+   CAJAS DE CÓDIGO ([code]) CON BOTÓN DE COPIAR
+   El botón lo añade el script "Botón de copiar código".
+   ========================================================== */
+#modernbb .codebox {
+  margin: 18px 0 !important;
+  padding: 0 !important;
+  background: #080808 !important;
+  border: 1px solid var(--aov-borde) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+#modernbb .codebox dt {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 !important;
+  padding: 10px 14px !important;
+  background: #101010 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--aov-oro-tenue) !important;
+  font-family: var(--aov-fuente-titulos) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--aov-oro) !important;
+}
+#modernbb .codebox dd {
+  max-height: 340px;
+  margin: 0 !important;
+  padding: 16px 18px !important;
+  overflow: auto;
+  background: none !important;
+  border: 0 !important;
+}
+#modernbb .codebox code {
+  display: block;
+  padding: 0 !important;
+  background: none !important;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #bdbdbd !important;
+}
+/* Colores del resaltado: sobrios, en la gama del foro */
+#modernbb .codebox code [class*="hljs-"] { color: inherit !important; font-weight: 400 !important; }
+#modernbb .codebox code .hljs-tag,
+#modernbb .codebox code .hljs-name,
+#modernbb .codebox code .hljs-keyword { color: var(--aov-oro) !important; }
+#modernbb .codebox code .hljs-string { color: #e3d3a8 !important; }
+#modernbb .codebox code .hljs-attr,
+#modernbb .codebox code .hljs-attribute,
+#modernbb .codebox code .hljs-class { color: #8a8577 !important; }
+#modernbb .codebox code .hljs-comment { color: #5c5c5c !important; font-style: italic; }
+
+/* Botón de copiar */
+#modernbb .codebox .aov-copiar {
+  flex: 0 0 auto;
+  padding: 5px 12px;
+  background: transparent;
+  border: 1px solid var(--aov-oro);
+  border-radius: 0;
+  font-family: var(--aov-fuente-titulos);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--aov-oro);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+#modernbb .codebox .aov-copiar:hover,
+#modernbb .codebox .aov-copiar.ok {
+  background: var(--aov-oro);
+  color: var(--aov-panel);
+}
+
+@media (max-width: 700px) {
+  .aov-tab-nombre { font-size: 24px; letter-spacing: 2px; }
+  .aov-tab-desc { font-size: 16px; }
+  #modernbb .codebox dd { padding: 12px !important; }
+}
