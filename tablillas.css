@@ -513,3 +513,326 @@
   .aov-tab-desc { font-size: 16px; }
   #modernbb .codebox dd { padding: 12px !important; }
 }
+
+/* ==========================================================
+TABLILLA DE FICHA DE PERSONAJE · AOV
+Añadir al final de tablillas.css
+Color de acento: el del grupo (--aov-color-grupo, que rellena el
+script "Color del grupo en tablillas" en .post), con el dorado
+como respaldo.
+========================================================== */
+.aov-ficha {
+--aov-ficha-acento: var(--aov-color-grupo, var(--aov-oro));
+position: relative;
+max-width: 760px;
+margin: 10px auto;
+padding: 0 44px 34px;
+box-sizing: border-box;
+overflow: hidden;
+background: var(--aov-panel);
+border: 1px solid var(--aov-borde);
+font-family: var(--aov-fuente-texto);
+color: var(--aov-texto);
+}
+.aov-ficha *,
+.aov-ficha *::before,
+.aov-ficha *::after { box-sizing: border-box; }
+
+/* Quitar los saltos de línea que Foroactivo añade entre bloques */
+.aov-ficha > br,
+.aov-ficha-banner > br,
+.aov-ficha-cab > br,
+.aov-ficha-retrato > br,
+.aov-ficha-id > br,
+.aov-ficha-datos > br,
+.aov-ficha-dato > br,
+.aov-ficha-desp > br,
+.aov-ficha-hab > br { display: none; }
+
+/* Rombos en las esquinas superiores */
+.aov-ficha::before,
+.aov-ficha::after {
+content: "";
+position: absolute;
+top: 14px;
+z-index: 2;
+width: 8px;
+height: 8px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-ficha-acento);
+transform: rotate(45deg);
+}
+.aov-ficha::before { left: 14px; }
+.aov-ficha::after { right: 14px; }
+
+/* Imagen horizontal: se funde hacia abajo con el panel */
+.aov-ficha-banner {
+height: 170px;
+margin: 0 -44px;
+background: var(--aov-panel-claro);
+-webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+mask-image: linear-gradient(to bottom, #000 40%, transparent);
+}
+.aov-ficha-banner img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center;
+filter: grayscale(1) brightness(.85);
+}
+
+/* Cabecera: retrato a la izquierda, identidad a la derecha */
+.aov-ficha-cab {
+position: relative;
+z-index: 1;
+display: flex;
+align-items: flex-start;
+gap: 34px;
+margin-top: -70px;
+}
+.aov-ficha-retrato {
+position: relative;
+flex: 0 0 200px;
+width: 200px;
+aspect-ratio: 1 / 1;
+padding: 6px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-ficha-acento);
+}
+.aov-ficha-retrato::after {
+content: "";
+position: absolute;
+left: 50%;
+bottom: -6px;
+width: 9px;
+height: 9px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-ficha-acento);
+transform: translateX(-50%) rotate(45deg);
+}
+.aov-ficha-retrato img {
+position: absolute;
+top: 6px;
+left: 6px;
+display: block;
+width: calc(100% - 12px);
+height: calc(100% - 12px);
+object-fit: cover;
+object-position: center top;
+background: var(--aov-panel-claro);
+}
+.aov-ficha-id {
+flex: 1 1 auto;
+min-width: 0;
+padding-top: 84px;
+}
+.aov-ficha-nombre {
+font-family: var(--aov-fuente-titulos);
+font-size: 40px;
+line-height: 1.1;
+letter-spacing: 1px;
+color: var(--aov-ficha-acento);
+}
+.aov-ficha-rango {
+margin-top: 8px;
+font-family: var(--aov-fuente-titulos);
+font-size: 15px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: #c8c8c8;
+}
+
+/* Separador línea – rombo – línea */
+.aov-ficha-sep {
+position: relative;
+height: 20px;
+margin: 20px 0;
+}
+.aov-ficha-sep::before {
+content: "";
+position: absolute;
+left: 0;
+right: 0;
+top: 50%;
+border-top: 1px solid color-mix(in srgb, var(--aov-ficha-acento) 45%, transparent);
+}
+.aov-ficha-sep::after {
+content: "";
+position: absolute;
+left: 50%;
+top: 50%;
+width: 10px;
+height: 10px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-ficha-acento);
+transform: translate(-50%, -50%) rotate(45deg);
+}
+.aov-ficha > .aov-ficha-sep { margin: 30px 0 10px; }
+.aov-ficha > .aov-ficha-sep::before { left: 10%; right: 10%; }
+
+/* Datos básicos: etiqueta ····· valor */
+.aov-ficha-dato {
+display: flex;
+align-items: baseline;
+gap: 12px;
+padding: 6px 0;
+line-height: 1.3;
+}
+.aov-ficha-dato span {
+flex: 1 1 auto;
+display: flex;
+align-items: baseline;
+gap: 10px;
+white-space: nowrap;
+font-family: var(--aov-fuente-titulos);
+font-size: 12px;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(--aov-ficha-acento);
+}
+.aov-ficha-dato span::after {
+content: "";
+flex: 1 1 auto;
+min-width: 12px;
+border-bottom: 1px dotted color-mix(in srgb, var(--aov-ficha-acento) 40%, transparent);
+transform: translateY(-3px);
+}
+.aov-ficha-dato b {
+flex: 0 1 auto;
+max-width: 62%;
+font-weight: 400;
+font-size: 18px;
+text-align: right;
+color: var(--aov-titulo);
+}
+.aov-ficha-grupo b { color: var(--aov-ficha-acento); }
+
+/* Cita o lema (opcional) */
+.aov-ficha-cita {
+max-width: 540px;
+margin: 36px auto 0;
+text-align: center;
+font-size: 21px;
+font-style: italic;
+line-height: 1.5;
+color: #b4b4b4;
+}
+.aov-ficha-cita:empty { display: none; }
+.aov-ficha-cita span {
+display: block;
+margin-top: 8px;
+font-family: var(--aov-fuente-titulos);
+font-size: 12px;
+font-style: normal;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--aov-suave);
+}
+
+/* Desplegables (details/summary) */
+.aov-ficha-desp {
+border-bottom: 1px solid #161616;
+}
+.aov-ficha-desp summary {
+display: flex;
+align-items: center;
+gap: 18px;
+padding: 16px 0;
+list-style: none;
+cursor: pointer;
+font-family: var(--aov-fuente-titulos);
+font-size: 20px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--aov-titulo);
+transition: color .3s;
+}
+.aov-ficha-desp summary::-webkit-details-marker { display: none; }
+.aov-ficha-desp summary::marker { content: ""; }
+.aov-ficha-desp summary::before {
+content: "";
+flex: 0 0 9px;
+width: 9px;
+height: 9px;
+margin: 0 4px;
+border: 1px solid var(--aov-ficha-acento);
+transform: rotate(45deg);
+transition: background .25s;
+}
+.aov-ficha-desp summary::after {
+content: "";
+flex: 1 1 auto;
+height: 1px;
+background: linear-gradient(to right, color-mix(in srgb, var(--aov-ficha-acento) 45%, transparent), transparent);
+}
+.aov-ficha-desp summary:hover { color: var(--aov-ficha-acento); }
+.aov-ficha-desp[open] summary::before { background: var(--aov-ficha-acento); }
+
+/* Texto libre de los desplegables (historia, otros datos) */
+.aov-ficha-texto {
+padding: 4px 0 22px;
+font-size: 18px;
+line-height: 1.7;
+text-align: justify;
+hyphens: auto;
+color: var(--aov-texto);
+}
+.aov-ficha-texto b,
+.aov-ficha-texto strong,
+.aov-ficha-texto i,
+.aov-ficha-texto em { color: var(--aov-ficha-acento); }
+
+/* Habilidades: nombre + descripción breve */
+.aov-ficha-hab {
+margin: 0 0 14px;
+padding: 4px 0 4px 18px;
+border-left: 1px solid color-mix(in srgb, var(--aov-ficha-acento) 50%, transparent);
+}
+.aov-ficha-desp .aov-ficha-hab:first-of-type { margin-top: 4px; }
+.aov-ficha-desp .aov-ficha-hab:last-child { margin-bottom: 22px; }
+.aov-ficha-hab b {
+display: block;
+font-family: var(--aov-fuente-titulos);
+font-size: 15px;
+font-weight: 400;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--aov-ficha-acento);
+}
+.aov-ficha-hab span {
+display: block;
+margin-top: 4px;
+font-size: 17px;
+line-height: 1.55;
+color: var(--aov-texto);
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+.aov-ficha { padding: 0 20px 26px; }
+.aov-ficha-banner { height: 120px; margin: 0 -20px; }
+.aov-ficha-cab {
+flex-direction: column;
+align-items: center;
+gap: 0;
+margin-top: -64px;
+}
+.aov-ficha-retrato { flex: 0 0 auto; width: 150px; }
+.aov-ficha-id { width: 100%; padding-top: 24px; text-align: center; }
+.aov-ficha-nombre { font-size: 30px; }
+.aov-ficha-rango { font-size: 13px; letter-spacing: 2.5px; }
+.aov-ficha-datos { text-align: left; }
+.aov-ficha-dato span { font-size: 11px; letter-spacing: 2px; }
+.aov-ficha-dato b { font-size: 17px; }
+.aov-ficha-cita { margin-top: 28px; font-size: 18px; }
+.aov-ficha-desp summary { gap: 14px; font-size: 17px; letter-spacing: 2px; }
+.aov-ficha-texto { font-size: 16px; text-align: left; }
+.aov-ficha-hab { padding-left: 14px; }
+.aov-ficha-hab b { font-size: 14px; }
+.aov-ficha-hab span { font-size: 16px; }
+}
+@media (max-width: 400px) {
+.aov-ficha-nombre { font-size: 26px; }
+.aov-ficha-dato b { max-width: 58%; }
+}
