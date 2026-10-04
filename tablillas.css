@@ -1393,3 +1393,262 @@ transition: color .3s;
 .aov-cofre-item span { font-size: 11px; letter-spacing: 2px; }
 .aov-cofre-item b { font-size: 17px; }
 }
+
+/* ==========================================================
+TABLILLA DE BÚSQUEDA DE PERSONAJES · AOV
+Añadir al final de tablillas.css
+· .aov-busca → una búsqueda (se busca a un personaje para una trama)
+· .aov-busca-rejilla → dos búsquedas en columnas dentro del mismo post
+Color de acento: el del grupo (--aov-color-grupo, que rellena el
+script "Color del grupo en tablillas" en .post), con el dorado
+como respaldo.
+========================================================== */
+.aov-busca {
+--aov-busca-acento: var(--aov-color-grupo, var(--aov-oro));
+position: relative;
+max-width: 760px;
+margin: 10px auto;
+padding: 44px 44px 36px;
+box-sizing: border-box;
+overflow: hidden;
+background: var(--aov-panel);
+border: 1px solid var(--aov-borde);
+font-family: var(--aov-fuente-texto);
+color: var(--aov-texto);
+}
+.aov-busca *,
+.aov-busca *::before,
+.aov-busca *::after { box-sizing: border-box; }
+
+/* Quitar los saltos de línea que Foroactivo añade entre bloques */
+.aov-busca br,
+.aov-busca-rejilla > br { display: none; }
+
+/* Rombos en las esquinas superiores */
+.aov-busca::before,
+.aov-busca::after {
+content: "";
+position: absolute;
+top: 14px;
+z-index: 2;
+width: 8px;
+height: 8px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-busca-acento);
+transform: rotate(45deg);
+}
+.aov-busca::before { left: 14px; }
+.aov-busca::after { right: 14px; }
+
+/* Enlaces: sin subrayado ni color heredado del foro */
+.aov-busca a,
+.aov-busca a:hover,
+.aov-busca a:focus { text-decoration: none !important; }
+.aov-busca a:focus-visible {
+outline: 1px solid var(--aov-busca-acento);
+outline-offset: 3px;
+}
+
+/* Imagen opcional: banner que se funde con el panel */
+.aov-busca-img {
+height: 150px;
+margin: -44px -44px 26px;
+background: var(--aov-panel-claro);
+-webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent);
+mask-image: linear-gradient(to bottom, #000 40%, transparent);
+}
+.aov-busca-img img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center;
+filter: grayscale(1) brightness(.8);
+}
+
+/* Cabecera */
+.aov-busca-cab { text-align: center; }
+.aov-busca-etq {
+font-family: var(--aov-fuente-titulos);
+font-size: 12px;
+letter-spacing: 6px;
+text-indent: 6px;
+text-transform: uppercase;
+color: var(--aov-busca-acento);
+}
+.aov-busca-titulo {
+margin-top: 10px;
+font-family: var(--aov-fuente-titulos);
+font-size: 36px;
+line-height: 1.1;
+letter-spacing: 1px;
+color: var(--aov-busca-acento);
+}
+
+/* Cupos: rombos rellenos (cubiertos) y vacíos (libres) */
+.aov-busca-cupos {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+margin-top: 16px;
+}
+.aov-busca-cupos span {
+font-family: var(--aov-fuente-titulos);
+font-size: 11px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--aov-suave);
+}
+.aov-busca-cupos i {
+display: block;
+width: 10px;
+height: 10px;
+border: 1px solid var(--aov-busca-acento);
+transform: rotate(45deg);
+}
+.aov-busca-cupos i.ok { background: var(--aov-busca-acento); }
+
+/* Etiquetas: separadas por rombos pequeños */
+.aov-busca-etiquetas {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+gap: 6px 0;
+margin-top: 18px;
+font-family: var(--aov-fuente-titulos);
+font-size: 13px;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: #c8c8c8;
+}
+.aov-busca-etiquetas span + span::before {
+content: "";
+display: inline-block;
+width: 5px;
+height: 5px;
+margin: 0 14px;
+vertical-align: middle;
+border: 1px solid var(--aov-busca-acento);
+transform: rotate(45deg);
+}
+
+/* Separador línea – rombo – línea */
+.aov-busca-sep {
+position: relative;
+height: 20px;
+margin: 24px 0;
+}
+.aov-busca-sep::before {
+content: "";
+position: absolute;
+left: 10%;
+right: 10%;
+top: 50%;
+border-top: 1px solid color-mix(in srgb, var(--aov-busca-acento) 45%, transparent);
+}
+.aov-busca-sep::after {
+content: "";
+position: absolute;
+left: 50%;
+top: 50%;
+width: 10px;
+height: 10px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-busca-acento);
+transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Descripción */
+.aov-busca-texto {
+font-size: 18px;
+line-height: 1.7;
+text-align: justify;
+hyphens: auto;
+color: var(--aov-texto);
+}
+.aov-busca-texto b,
+.aov-busca-texto strong,
+.aov-busca-texto i,
+.aov-busca-texto em { color: var(--aov-busca-acento); }
+
+/* Pie: quién busca + contacto */
+.aov-busca-pie {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+margin-top: 26px;
+}
+.aov-busca-quien {
+display: flex;
+flex-direction: column;
+gap: 4px;
+min-width: 0;
+}
+.aov-busca-quien span {
+font-family: var(--aov-fuente-titulos);
+font-size: 11px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--aov-suave);
+}
+.aov-busca-quien a {
+font-family: var(--aov-fuente-titulos);
+font-size: 20px;
+letter-spacing: 1px;
+color: var(--aov-titulo) !important;
+transition: color .3s;
+}
+.aov-busca-quien a:hover,
+.aov-busca-quien a:focus-visible { color: var(--aov-busca-acento) !important; }
+.aov-busca-contacto {
+flex: 0 0 auto;
+padding: 9px 20px;
+border: 1px solid var(--aov-busca-acento);
+font-family: var(--aov-fuente-titulos);
+font-size: 12px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--aov-busca-acento) !important;
+transition: background .25s, color .25s;
+}
+.aov-busca-contacto:hover,
+.aov-busca-contacto:focus-visible {
+background: var(--aov-busca-acento);
+color: var(--aov-panel) !important;
+}
+
+/* Variante: dos búsquedas en columnas dentro del mismo post */
+.aov-busca-rejilla {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 14px;
+max-width: 760px;
+margin: 10px auto;
+}
+.aov-busca-rejilla .aov-busca {
+margin: 0;
+padding: 40px 24px 28px;
+}
+.aov-busca-rejilla .aov-busca-img { margin: -40px -24px 22px; height: 120px; }
+.aov-busca-rejilla .aov-busca-titulo { font-size: 28px; }
+.aov-busca-rejilla .aov-busca-etiquetas { font-size: 11px; letter-spacing: 2px; }
+.aov-busca-rejilla .aov-busca-etiquetas span + span::before { margin: 0 9px; }
+.aov-busca-rejilla .aov-busca-texto { font-size: 16px; line-height: 1.65; text-align: left; }
+.aov-busca-rejilla .aov-busca-pie { flex-direction: column; align-items: flex-start; }
+.aov-busca-rejilla .aov-busca-contacto { align-self: stretch; text-align: center; }
+
+/* Móvil */
+@media (max-width: 700px) {
+.aov-busca { padding: 38px 22px 30px; }
+.aov-busca-img { height: 110px; margin: -38px -22px 22px; }
+.aov-busca-titulo { font-size: 28px; }
+.aov-busca-etiquetas { font-size: 11px; letter-spacing: 2px; }
+.aov-busca-etiquetas span + span::before { margin: 0 9px; }
+.aov-busca-texto { font-size: 16px; text-align: left; }
+.aov-busca-pie { flex-direction: column; align-items: stretch; }
+.aov-busca-contacto { text-align: center; }
+.aov-busca-rejilla { grid-template-columns: minmax(0, 1fr); }
+}
