@@ -1132,3 +1132,264 @@ color: var(--aov-cuervo-acento);
 .aov-cuervo-sello::before { inset: 10px; }
 .aov-cuervo-sello::after { inset: 20px; }
 }
+
+/* ==========================================================
+TABLILLA DE COFRE · AOV
+Añadir al final de tablillas.css
+· .aov-cofre → índice del personaje: enlaza, dentro del mismo tema,
+  a la cronología, a las relaciones y a la miscelánea
+Color de acento: el del grupo (--aov-color-grupo, que rellena el
+script "Color del grupo en tablillas" en .post), con el dorado
+como respaldo.
+========================================================== */
+.aov-cofre {
+--aov-cofre-acento: var(--aov-color-grupo, var(--aov-oro));
+position: relative;
+max-width: 760px;
+margin: 10px auto;
+padding: 46px 44px 40px;
+box-sizing: border-box;
+background: var(--aov-panel);
+border: 1px solid var(--aov-borde);
+font-family: var(--aov-fuente-texto);
+color: var(--aov-texto);
+}
+.aov-cofre *,
+.aov-cofre *::before,
+.aov-cofre *::after { box-sizing: border-box; }
+
+/* Quitar los saltos de línea que Foroactivo añade entre bloques */
+.aov-cofre br { display: none; }
+
+/* Rombos en las esquinas superiores */
+.aov-cofre::before,
+.aov-cofre::after {
+content: "";
+position: absolute;
+top: 14px;
+width: 8px;
+height: 8px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-cofre-acento);
+transform: rotate(45deg);
+}
+.aov-cofre::before { left: 14px; }
+.aov-cofre::after { right: 14px; }
+
+/* Enlaces: sin subrayado ni color heredado del foro */
+.aov-cofre a,
+.aov-cofre a:hover,
+.aov-cofre a:focus { text-decoration: none !important; color: var(--aov-texto) !important; }
+.aov-cofre a:focus-visible {
+outline: 1px solid var(--aov-cofre-acento);
+outline-offset: 3px;
+}
+
+/* Cabecera */
+.aov-cofre-cab { text-align: center; }
+.aov-cofre-etq {
+font-family: var(--aov-fuente-titulos);
+font-size: 12px;
+letter-spacing: 6px;
+text-transform: uppercase;
+color: var(--aov-cofre-acento);
+}
+.aov-cofre-nombre {
+margin-top: 10px;
+font-family: var(--aov-fuente-titulos);
+font-size: 40px;
+line-height: 1.1;
+letter-spacing: 1px;
+color: var(--aov-cofre-acento);
+}
+.aov-cofre-sub {
+margin-top: 12px;
+font-family: var(--aov-fuente-titulos);
+font-size: 15px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: #c8c8c8;
+}
+.aov-cofre-sub:empty { display: none; }
+
+/* Separador línea – rombo – línea */
+.aov-cofre-sep {
+position: relative;
+height: 20px;
+margin: 26px 0 30px;
+}
+.aov-cofre-sep::before {
+content: "";
+position: absolute;
+left: 10%;
+right: 10%;
+top: 50%;
+border-top: 1px solid color-mix(in srgb, var(--aov-cofre-acento) 45%, transparent);
+}
+.aov-cofre-sep::after {
+content: "";
+position: absolute;
+left: 50%;
+top: 50%;
+width: 10px;
+height: 10px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-cofre-acento);
+transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Cronología y Relaciones: dos losas enlazadas */
+.aov-cofre-rejilla {
+display: flex;
+gap: 14px;
+}
+.aov-cofre-enlace {
+position: relative;
+flex: 1 1 0;
+min-width: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+padding: 30px 16px 28px;
+text-align: center;
+background: linear-gradient(180deg, rgba(255, 255, 255, .018), rgba(0, 0, 0, .28));
+border: 1px solid var(--aov-borde);
+transition: border-color .35s, transform .35s, box-shadow .35s;
+}
+.aov-cofre-enlace::before {
+content: "";
+position: absolute;
+top: -5px;
+left: 50%;
+width: 8px;
+height: 8px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-cofre-acento);
+transform: translateX(-50%) rotate(45deg);
+}
+.aov-cofre-enlace::after {
+content: "";
+position: absolute;
+left: 50%;
+bottom: -1px;
+width: 0;
+height: 1px;
+background: var(--aov-cofre-acento);
+transform: translateX(-50%);
+transition: width .4s;
+}
+.aov-cofre-num {
+font-family: var(--aov-fuente-titulos);
+font-size: 12px;
+letter-spacing: 6px;
+text-indent: 6px;
+color: var(--aov-cofre-acento);
+opacity: .75;
+}
+.aov-cofre-nom {
+font-family: var(--aov-fuente-titulos);
+font-size: 24px;
+line-height: 1.15;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--aov-titulo);
+transition: color .3s;
+}
+.aov-cofre-desc {
+font-size: 16px;
+font-style: italic;
+line-height: 1.5;
+color: var(--aov-suave);
+}
+.aov-cofre-desc:empty { display: none; }
+.aov-cofre-enlace:hover,
+.aov-cofre-enlace:focus-visible {
+border-color: color-mix(in srgb, var(--aov-cofre-acento) 55%, transparent);
+transform: translateY(-3px);
+box-shadow: 0 14px 28px -18px color-mix(in srgb, var(--aov-cofre-acento) 60%, transparent);
+}
+.aov-cofre-enlace:hover::after,
+.aov-cofre-enlace:focus-visible::after { width: 60%; }
+.aov-cofre-enlace:hover .aov-cofre-nom,
+.aov-cofre-enlace:focus-visible .aov-cofre-nom { color: var(--aov-cofre-acento); }
+
+/* Miscelánea: lista de enlaces libres */
+.aov-cofre-misc { margin-top: 38px; }
+.aov-cofre-misc-titulo {
+display: flex;
+align-items: center;
+gap: 18px;
+font-family: var(--aov-fuente-titulos);
+font-size: 20px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(--aov-titulo);
+}
+.aov-cofre-misc-titulo::before {
+content: "";
+flex: 0 0 9px;
+width: 9px;
+height: 9px;
+margin: 0 4px;
+border: 1px solid var(--aov-cofre-acento);
+transform: rotate(45deg);
+}
+.aov-cofre-misc-titulo::after {
+content: "";
+flex: 1 1 auto;
+height: 1px;
+background: linear-gradient(to right, color-mix(in srgb, var(--aov-cofre-acento) 45%, transparent), transparent);
+}
+.aov-cofre-lista { padding-top: 10px; }
+.aov-cofre-item {
+display: flex;
+align-items: baseline;
+gap: 12px;
+padding: 8px 0;
+line-height: 1.3;
+}
+.aov-cofre-item span {
+flex: 1 1 auto;
+display: flex;
+align-items: baseline;
+gap: 10px;
+font-family: var(--aov-fuente-titulos);
+font-size: 13px;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(--aov-cofre-acento);
+transition: color .3s;
+}
+.aov-cofre-item span::after {
+content: "";
+flex: 1 1 auto;
+min-width: 12px;
+border-bottom: 1px dotted color-mix(in srgb, var(--aov-cofre-acento) 40%, transparent);
+transform: translateY(-3px);
+}
+.aov-cofre-item b {
+flex: 0 1 auto;
+max-width: 62%;
+font-weight: 400;
+font-size: 18px;
+text-align: right;
+color: var(--aov-titulo);
+transition: color .3s;
+}
+.aov-cofre-item:hover span,
+.aov-cofre-item:focus-visible span { color: var(--aov-titulo); }
+.aov-cofre-item:hover b,
+.aov-cofre-item:focus-visible b { color: var(--aov-cofre-acento); }
+
+/* Móvil */
+@media (max-width: 700px) {
+.aov-cofre { padding: 40px 22px 32px; }
+.aov-cofre-nombre { font-size: 30px; }
+.aov-cofre-sub { font-size: 13px; letter-spacing: 2.5px; }
+.aov-cofre-rejilla { flex-direction: column; }
+.aov-cofre-nom { font-size: 21px; }
+.aov-cofre-misc-titulo { gap: 14px; font-size: 17px; letter-spacing: 2px; }
+.aov-cofre-item span { font-size: 11px; letter-spacing: 2px; }
+.aov-cofre-item b { font-size: 17px; }
+}
