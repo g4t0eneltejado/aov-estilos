@@ -1638,3 +1638,13 @@ padding: 40px 24px 30px;
 .aov-busca-texto { font-size: 16px; text-align: left; }
 .aov-busca-rejilla { grid-template-columns: minmax(0, 1fr); }
 }
+
+
+/* Sin guiones automaticos en todas las tablillas: si una palabra no cabe, pasa entera a la linea siguiente */
+[class*="aov-"] { hyphens: none !important; -webkit-hyphens: none !important; word-break: normal !important; }
+
+/* Cofre, miscelanea: al pasar el cursor, solo la fila señalada se pone dorada (sin invertir colores) */
+.aov-cofre-item span::after { transition: border-color .3s; }
+.aov-cofre-item:hover span, .aov-cofre-item:focus-visible span { color: var(--aov-cofre-acento); }
+.aov-cofre-item:hover b, .aov-cofre-item:focus-visible b { color: var(--aov-cofre-acento); }
+.aov-cofre-item:hover span::after, .aov-cofre-item:focus-visible span::after { border-bottom-color: var(--aov-cofre-acento); }
