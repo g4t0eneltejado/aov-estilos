@@ -1725,6 +1725,8 @@ color: var(--aov-texto);
 }
 .aov-crono-texto b,
 .aov-crono-texto strong { color: var(--aov-oro); font-weight: 400; }
+.aov-crono-fecha { font-size: 15px; }
+.aov-crono-fecha, .aov-crono-titulo, .aov-crono-texto { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
 
 /* ---------- Presente del foro (bloque destacado) ---------- */
 .aov-crono-ahora { padding-bottom: 0; }
@@ -1800,3 +1802,4 @@ line-height: 1.75;
 .aov-crono-caja .aov-crono-titulo { font-size: 23px; letter-spacing: 2px; }
 .aov-crono-caja .aov-crono-texto { font-size: 16px; text-align: left; }
 }
+@media (max-width: 700px) { .aov-crono-fecha { font-size: 14px; } }
