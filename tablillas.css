@@ -1648,3 +1648,155 @@ padding: 40px 24px 30px;
 .aov-cofre-item:hover span, .aov-cofre-item:focus-visible span { color: var(--aov-cofre-acento); }
 .aov-cofre-item:hover b, .aov-cofre-item:focus-visible b { color: var(--aov-cofre-acento); }
 .aov-cofre-item:hover span::after, .aov-cofre-item:focus-visible span::after { border-bottom-color: var(--aov-cofre-acento); }
+
+/* ==========================================================
+CRONOLOGÍA · AOV
+Añadir al FINAL de tablillas.css (no toca nada de lo existente)
+Módulo para usar DENTRO de la tablilla de staff (.aov-doc), dentro
+de un .aov-doc-seccion, igual que .aov-doc-art.
+· .aov-crono → contenedor de la línea temporal
+· .aov-crono-item → una entrada (fecha, título, texto)
+· .aov-crono-ahora → bloque final destacado: el presente del foro
+Usa solo las variables del foro (--aov-oro, --aov-oro-tenue,
+--aov-panel, --aov-borde, --aov-texto, --aov-titulo, --aov-suave,
+--aov-fuente-titulos, --aov-fuente-texto).
+========================================================== */
+.aov-crono { position: relative; }
+.aov-crono *,
+.aov-crono *::before,
+.aov-crono *::after { box-sizing: border-box; }
+
+/* Quitar los saltos de línea que Foroactivo añade entre bloques */
+.aov-crono br { display: none; }
+
+/* ---------- Entrada ---------- */
+.aov-crono-item {
+position: relative;
+padding: 0 0 30px 44px;
+}
+/* Rombo sobre la línea */
+.aov-crono-item::before {
+content: "";
+position: absolute;
+z-index: 1;
+top: 5px;
+left: 6px;
+width: 9px;
+height: 9px;
+background: var(--aov-panel);
+border: 1px solid var(--aov-oro);
+transform: rotate(45deg);
+}
+/* Tramo de la línea vertical que une cada entrada con la siguiente */
+.aov-crono-item::after {
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+left: 10px;
+width: 1px;
+background: var(--aov-oro-tenue);
+}
+.aov-crono-item:first-of-type::after { top: 10px; }
+
+.aov-crono-fecha {
+font-family: var(--aov-fuente-titulos);
+font-size: 13px;
+line-height: 1.4;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(--aov-oro);
+}
+.aov-crono-titulo {
+margin-top: 6px;
+font-family: var(--aov-fuente-titulos);
+font-size: 21px;
+line-height: 1.25;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(--aov-titulo);
+}
+.aov-crono-texto {
+margin-top: 8px;
+font-size: 18px;
+line-height: 1.7;
+text-align: justify;
+color: var(--aov-texto);
+}
+.aov-crono-texto b,
+.aov-crono-texto strong { color: var(--aov-oro); font-weight: 400; }
+
+/* ---------- Presente del foro (bloque destacado) ---------- */
+.aov-crono-ahora { padding-bottom: 0; }
+/* La línea baja solo hasta el rombo del presente */
+.aov-crono-ahora::after { bottom: auto; height: 34px; }
+/* Rombo mayor, relleno de oro */
+.aov-crono-ahora::before {
+top: 29px;
+left: 4px;
+width: 13px;
+height: 13px;
+background: var(--aov-oro);
+box-shadow: 0 0 0 4px var(--aov-panel), 0 0 14px 2px var(--aov-oro-tenue);
+}
+.aov-crono-caja {
+position: relative;
+padding: 30px 30px 28px;
+background: #101010;
+border: 1px solid var(--aov-oro-tenue);
+border-left: 2px solid var(--aov-oro);
+text-align: center;
+}
+/* Esquinas doradas, como en la tablilla de staff */
+.aov-crono-caja::before,
+.aov-crono-caja::after {
+content: "";
+position: absolute;
+width: 20px;
+height: 20px;
+pointer-events: none;
+}
+.aov-crono-caja::before {
+top: 6px;
+right: 6px;
+border-top: 1px solid var(--aov-oro);
+border-right: 1px solid var(--aov-oro);
+}
+.aov-crono-caja::after {
+bottom: 6px;
+right: 6px;
+border-bottom: 1px solid var(--aov-oro);
+border-right: 1px solid var(--aov-oro);
+}
+.aov-crono-caja .aov-crono-fecha { letter-spacing: 5px; }
+.aov-crono-caja .aov-crono-titulo {
+margin-top: 10px;
+font-size: 30px;
+letter-spacing: 3px;
+color: var(--aov-oro);
+}
+.aov-crono-caja .aov-doc-orn {
+width: 200px;
+margin: 18px auto 20px;
+}
+.aov-crono-caja .aov-doc-orn::after { background: #101010; }
+.aov-crono-caja .aov-crono-texto {
+margin-top: 0;
+font-size: 19px;
+line-height: 1.75;
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+.aov-crono-item { padding-left: 32px; padding-bottom: 26px; }
+.aov-crono-item::before { left: 3px; }
+.aov-crono-item::after { left: 7px; }
+.aov-crono-fecha { font-size: 12px; letter-spacing: 3px; }
+.aov-crono-titulo { font-size: 17px; letter-spacing: 1.5px; }
+.aov-crono-texto { font-size: 16px; text-align: left; }
+.aov-crono-ahora::before { left: 1px; top: 25px; }
+.aov-crono-ahora::after { height: 30px; }
+.aov-crono-caja { padding: 24px 18px 22px; }
+.aov-crono-caja .aov-crono-titulo { font-size: 23px; letter-spacing: 2px; }
+.aov-crono-caja .aov-crono-texto { font-size: 16px; text-align: left; }
+}
