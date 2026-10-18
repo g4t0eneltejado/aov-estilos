@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/* ··························································
+ASHES OF VALYRIA · REGISTRO DE PBs
+Cargar DESPUÉS de tablillas.css e indice-tablillas.css.
+Usa las variables --aov-* definidas en el :root de aov-base.css.
+
+Snippet de tarjeta (una línea, sin saltos):
+<div class="aov-pb"><img src="URL_IMAGEN"><b>Nombre del actor</b><a href="URL_PERFIL">Nombre del personaje</a></div>
+
+Estructura de cada post del tema (un post por letra):
+<div class="aov-pb-letra">A</div>
+<div class="aov-pb-rejilla">…tarjetas…</div>
+·························································· */
+
+/* Contenedor de tarjetas */
+.aov-pb-rejilla {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 14px;
+max-width: 860px;
+margin: 0 auto 18px;
+padding: 0 6px;
+box-sizing: border-box;
+}
+.aov-pb-rejilla br,
+.aov-pb br { display: none; }
+
+/* Cabecera de letra, con filetes dorados a los lados */
+.aov-pb-letra {
+display: flex;
+align-items: center;
+gap: 22px;
+max-width: 860px;
+margin: 30px auto 22px;
+font-family: var(--aov-fuente-titulos);
+font-size: 52px;
+line-height: 1;
+letter-spacing: .06em;
+color: var(--aov-oro);
+}
+.aov-pb-letra::before,
+.aov-pb-letra::after {
+content: "";
+flex: 1 1 auto;
+height: 1px;
+}
+.aov-pb-letra::before { background: linear-gradient(to right, transparent, var(--aov-oro-tenue)); }
+.aov-pb-letra::after  { background: linear-gradient(to left, transparent, var(--aov-oro-tenue)); }
+
+/* Tarjeta */
+.aov-pb {
+display: inline-block;
+width: 164px;
+margin: 7px;
+padding: 8px 8px 16px;
+box-sizing: border-box;
+vertical-align: top;
+text-align: center;
+background: var(--aov-panel);
+border: 1px solid var(--aov-borde);
+transition: border-color .3s, transform .3s;
+}
+.aov-pb-rejilla .aov-pb { margin: 0; }
+.aov-pb:hover {
+border-color: var(--aov-oro-tenue);
+transform: translateY(-2px);
+}
+
+/* Foto a color original (anula el sepia global de aov-base.css) */
+.aov-pb img {
+display: block;
+width: 100%;
+height: 200px;
+margin: 0 0 12px;
+object-fit: cover;
+object-position: center top;
+border: 1px solid var(--aov-borde);
+filter: none !important;
+}
+
+/* Actor */
+.aov-pb b {
+display: block;
+font-family: var(--aov-fuente-texto);
+font-size: 14px;
+font-weight: 400;
+font-style: italic;
+line-height: 1.25;
+letter-spacing: .02em;
+color: var(--aov-suave);
+}
+.aov-pb b::after {
+content: "";
+display: block;
+width: 28px;
+height: 1px;
+margin: 9px auto 8px;
+background: var(--aov-oro-tenue);
+}
+
+/* Personaje (enlace al perfil) */
+.aov-pb a,
+.aov-pb a:visited {
+display: block;
+font-family: var(--aov-fuente-titulos);
+font-size: 17px;
+line-height: 1.2;
+letter-spacing: .02em;
+text-decoration: none;
+color: var(--aov-oro);
+transition: color .25s;
+}
+.aov-pb a:hover { color: var(--aov-titulo); }
+
+@media (max-width: 480px) {
+.aov-pb-letra { font-size: 40px; gap: 14px; }
+.aov-pb { width: calc(50% - 14px); margin: 5px; }
+.aov-pb-rejilla { gap: 10px; }
+.aov-pb-rejilla .aov-pb { width: calc(50% - 5px); }
+.aov-pb img { height: 170px; }
+.aov-pb a { font-size: 15px; }
+}
