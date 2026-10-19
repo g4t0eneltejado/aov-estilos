@@ -473,3 +473,7 @@ dl:has([name="profile_field_16_-7"]),dl:has([name^="profile_field_4_-12"]),dl:ha
                 M22=-1,
                 SizingMethod="auto expand");
         }
+
+/* Ambientación: tarjetas de destino */
+.aov-nav-card{transition:transform .3s,border-color .3s,box-shadow .3s}
+.aov-nav-card:hover{transform:translateY(-4px);border-color:#c2a86b!important;box-shadow:0 6px 18px rgba(194,168,107,.18)}
